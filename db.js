@@ -1,0 +1,21 @@
+const mongodb=require('mongodb')
+const MongoClient=mongodb.MongoClient
+const ObjectId=mongodb.ObjectId
+
+let database;
+
+async function getDatabase()
+{
+    const client=await MongoClient.connect('mongodb://localhost:27017')
+database=client.db('ofc')
+if(!database)
+console.log("Db connection failed to establish")
+
+return database
+
+}
+
+module.exports=
+{
+    getDatabase,ObjectId
+}
