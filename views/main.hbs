@@ -1,42 +1,43 @@
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Mongodb crud example</title>
+    <title>Mongodb CRUD Example</title>
 </head>
 <body>
-    <h1>MongoDb crud</h1>
+    
+    <h1>Mongodb CRUD Example</h1>
+    {{message}}
     <br>
     {{#if edit_id}}
-    <h3>Edit Data</h3>
-   
-    <form method="post" action="/edit_emp/{{edit_id}}">
-        <label for="">Dept</label>
-        <input type="text" name="dept" value="{{edit_book.dept}}">
-        <label>Name</label>
-        <input type="text" name="name" value="{{edit_book.name}}">
-        <input type="submit">
-    </form>
-    <br>
+     <h3>Edit</h3>
+    <form method="post" action="/update_emp/{{edit_id}}">
+        <label for="">Title</label>
+        <input type="text" name="title" value="{{edit_emp.title}}">
+        <label for="">Author</label>
+        <input type="text" name="author" value="{{edit_emp.author}}">
+        <input type="submit" >
+    </form><br><br>
     {{else}}
-    <h3>Create Data</h3>
+
+    <h3>Create</h3>
     <form method="post" action="/store_emp">
         <label for="">Dept</label>
         <input type="text" name="dept">
-        <label>Name</label>
+        <label for="">Name</label>
         <input type="text" name="name">
-        <input type="submit">
-    </form>
-    <br>
-    {{/if}}
-    {{message}}
-    <ul>    
+        <input type="submit" >
+    </form><br><br>
+
+   {{/if}}
+
+    <ul>
         {{#each employee}}
-        <li>{{this.dept}}-{{this.name}}-{{this.eid}}<a href="/?edit_id={{this._id}}">edit</a></li>
+        <li> {{this.dept}} - {{this.name}}-{{this.eid}}  <a href="/?edit_id={{this._id}}">Edit</a>  <a href="/?delete_id={{this._id}}" onclick="return confirm('Are you sure want to delete?')" >Delete</a></li>
         {{/each}}
     </ul>
+
 </body>
 </html>
