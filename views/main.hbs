@@ -1,1 +1,42 @@
 
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mongodb crud example</title>
+</head>
+<body>
+    <h1>MongoDb crud</h1>
+    <br>
+    {{#if edit_id}}
+    <h3>Edit Data</h3>
+   
+    <form method="post" action="/edit_emp/{{edit_id}}">
+        <label for="">Dept</label>
+        <input type="text" name="dept" value="{{edit_book.dept}}">
+        <label>Name</label>
+        <input type="text" name="name" value="{{edit_book.name}}">
+        <input type="submit">
+    </form>
+    <br>
+    {{else}}
+    <h3>Create Data</h3>
+    <form method="post" action="/store_emp">
+        <label for="">Dept</label>
+        <input type="text" name="dept">
+        <label>Name</label>
+        <input type="text" name="name">
+        <input type="submit">
+    </form>
+    <br>
+    {{/if}}
+    {{message}}
+    <ul>    
+        {{#each employee}}
+        <li>{{this.dept}}-{{this.name}}-{{this.eid}}<a href="/?edit_id={{this._id}}">edit</a></li>
+        {{/each}}
+    </ul>
+</body>
+</html>
